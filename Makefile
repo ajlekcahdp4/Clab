@@ -14,6 +14,6 @@ mnk:
 writetex.o:
 	gcc -c writetex/writetex.c
 clean:
-	rm -rf *.o *.out *.tex data.txt graph.png
+	rm -rf *.o *.out *.tex *.zip data.txt graph.png 
 
 

@@ -1,0 +1,1 @@
+# lab calculation and auto tex writing

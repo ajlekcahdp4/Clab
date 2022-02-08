@@ -27,22 +27,19 @@ void TabForGraph (FILE * f, double* x, double* y, int N)
         fprintf(f, "c|");
     fprintf (f, "}\n\\hline\n");
 
-    fprintf (f, "&&");
     for (int i = 0; i < N; i++)
-        fprintf (f, "%.4lf&", x[i]);
+        fprintf (f, "&%.4lf", x[i]);
     fprintf(f, "\\\\\\hline\n");
 
-    fprintf (f, "&&");
     for (int i = 0; i < N; i++)
-        fprintf (f, "%.4lf&", y[i]);
+        fprintf (f, "&%.4lf", y[i]);
     fprintf(f, "\\\\\\hline\n");
 
-    fprintf (f, "\\hline\n");
     fprintf (f, "\\end{tabular}\n$$\n\n");
 }
 
 void PrintEnd (FILE* f)
 {
     fprintf (f, "\\textbf{Краткие выводы:}\n\n");
-    fprintf (f, "\\end{documment}");
+    fprintf (f, "\\end{document}");
 }
