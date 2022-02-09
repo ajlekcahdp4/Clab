@@ -27,13 +27,13 @@ double SumSq (double* a, int N)
 
 double Get_a (double* x, double* y, int N)
 {
-    int a = (N*SumMul(x, y, N) - Sum(x, N)*Sum(y, N))/(N*SumSq(x, N) - (Sum(x, N) * Sum(x, N)));
+    double a = (N*SumMul(x, y, N) - Sum(x, N)*Sum(y, N))/(N*SumSq(x, N) - (Sum(x, N) * Sum(x, N)));
     return a;
 }
 
 double Get_b (double* x, double* y, int N)
 {
-    int b = (Sum(y, N) - Get_a(x, y, N)*Sum(x, N))/N;
+    double b = (Sum(y, N) - Get_a(x, y, N)*Sum(x, N))/N;
     return b;
 }
 double Get_ad (double*x, double* y, int N)

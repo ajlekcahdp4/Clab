@@ -47,6 +47,7 @@ int main ()
     PrintStart (f, "2.2.4");
     TabForGraph(f, x, y, N);
     IncludePic (f, "graph.png");
+    LineDev (f);
     PrintEnd (f);
 
 //=================================================================

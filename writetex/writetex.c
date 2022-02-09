@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "writetex.h"
 #include "../mnk/mnk.h"
 void PrintStart (FILE* f, char* lab_num)
@@ -19,6 +20,40 @@ void IncludePic (FILE* f, char* pic)
     fprintf(f, "\\end{center}\n\n");
 }
 
+void LineDev (FILE* f)
+{
+    FILE* datafile = fopen ("data.txt", "r");
+
+    int N = 0;
+    fscanf (datafile, "%d", &N);
+   
+    double* x = calloc (N, sizeof(double));
+    for (int i = 0; i < N ; i++)
+        fscanf (datafile, "%lf", x + i);
+
+    double* y = calloc (N, sizeof(double));
+    for (int i = 0; i < N ; i++)
+        fscanf (datafile, "%lf", y + i);
+
+    double a = 0;
+    fscanf (datafile, "%lf", &a);
+
+    double b = 0;
+    fscanf (datafile, "%lf", &b);
+
+    double ad = 0;
+    fscanf (datafile, "%lf", &ad);
+
+    double bd = 0;
+    fscanf (datafile, "%lf", &bd);
+
+
+    fprintf (f, "Полученная линейная (вида $y = ax + b$) зависимость: $y = %.4gx + %.4g$\\\\\n", a, b);
+    fprintf (f, "$\\sigma_a = %.4g$ , \\$sigma_b = %.4g$\\\\\n", ad, bd);
+    fclose(datafile);
+    free (x);
+    free(y);
+}
 void TabForGraph (FILE * f, double* x, double* y, int N)
 {
     fprintf (f, "$$\n");
