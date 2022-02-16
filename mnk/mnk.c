@@ -45,6 +45,6 @@ double Get_ad (double*x, double* y, int N)
 
 double Get_bd (double*x, double* y, int N)
 {
-    double bd = Get_ad (x, y, N) * (1/N) * sqrt(N*SumSq(x, N) - (Sum (x, N) * Sum (x, N)));
+    double bd = Get_ad (x, y, N) * (1/(double)N) * sqrt(N*SumSq(x, N) - (Sum (x, N) * Sum (x, N)));
     return bd;
 }
