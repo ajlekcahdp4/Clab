@@ -41,10 +41,13 @@ int main ()
 
     FILE* f = fopen (file_name, "w");
 
+    printf("Enter number of lab\n");
+    char* lab_name = calloc (10, sizeof(char));
+    scanf ("%s", lab_name);
 //=================================================================
 //Here you can combine your own .tex file:
 //=================================================================
-    PrintStart (f, "2.2.4");
+    PrintStart (f, lab_name);
     TabForGraph(f, x, y, N);
     IncludePic (f, "graph.png");
     LineDev (f);
