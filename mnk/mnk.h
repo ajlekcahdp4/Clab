@@ -1,10 +1,3 @@
-typedef struct mnk
-{
-    double a;
-    double b;
-    double ad;
-    double bd;
-}mnk;
 
 double Sum (double* a, int N);
 double SumMul (double* a, double* b, int N);

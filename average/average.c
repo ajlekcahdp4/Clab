@@ -1,5 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include "average.h"
+
+
+double AvarageVal (int N, double* row);
+double Deviation (int N, double* row, double av);
 
 void CalcAverage ()
 {
@@ -8,7 +14,7 @@ void CalcAverage ()
     scanf ("%s", input_name);
 
     FILE* input  = fopen (input_name, "r");
-    FILE* output = fopen ("avarage_values.txt", "w");
+    FILE* output = fopen ("average_values.txt", "w");
     
     int n_row = 0;
     fscanf (input, "%d", &n_row);
@@ -16,15 +22,17 @@ void CalcAverage ()
     int N = 0;
     fscanf(input, "%d", &N);
 
-    int* row = calloc (N, sizeof (double));
+    double* row = calloc (N, sizeof (double));
 
-
-    for (int i = 0; i < N; i++)
-        fscanf (input, "%ld", row + i);
-    double av  = AvarageVal (N, row);
-    double dev = Deviation  (N, row, av);
-    fprintf (output, "%g ",   av);
-    fprintf (output, "%g\n", dev);
+    for (int j = 0; j < n_row; j++)
+    {
+        for (int i = 0; i < N; i++)
+            fscanf (input, "%lf", row + i);
+        double av  = AvarageVal (N, row);
+        double dev = Deviation  (N, row, av);
+        fprintf (output, "%g ",   av);
+        fprintf (output, "%g\n", dev);
+    }
 }
 
 
@@ -43,6 +51,6 @@ double Deviation (int N, double* row, double av)
     double sum_sq_sub = 0;
     for (int i = 0; i < N; i++)
         sum_sq_sub += (av - row[i]) * (av - row[i]);
-    dev = sqrtf ((1/(N - 1)) * sum_sq_sub);
+    dev = sqrtf ((1/((double)(N - 1))) * sum_sq_sub);
     return dev;
 }

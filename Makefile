@@ -5,7 +5,7 @@ MakeTex: Graph main writetex.o
 	$(CC) main.o writetex.o -o MakeTex.out
 	./MakeTex.out
 Graph:
-	$(CC)  topy.c mnk/mnk.c -lm -o topy.out
+	$(CC)  Data_calc.c mnk/mnk.c average/average.c -lm -o topy.out
 	./topy.out
 	python3 main.py
 main:
@@ -15,4 +15,4 @@ mnk:
 writetex.o:
 	$(CC) -c writetex/writetex.c
 clean:
-	rm -rf *.o *.out *.tex *.zip data.txt graph.png graph.eps
+	rm -rf *.o *.out *.tex *.zip data_mnk.txt graph.eps average_values.txt

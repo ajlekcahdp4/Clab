@@ -1,6 +1,6 @@
 import graph
 
-f = open ("data.txt", "r")
+f = open ("data_mnk.txt", "r")
 N = int(f.readline ())
 x = list(map(float, (f.readline()).split()))
 y = list(map(float, (f.readline()).split()))
