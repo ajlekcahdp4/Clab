@@ -8,7 +8,7 @@ int main ()
 {
     setlocale (LC_ALL, "Rus");
 
-    FILE* fp = fopen ("data.txt", "r");
+    FILE* fp = fopen ("data_mnk.txt", "r");
 
     int N = 0;
     fscanf (fp, "%d", &N);
@@ -61,7 +61,7 @@ int main ()
     free(x);
     free(y);
     free(file_name);
-
+    free (lab_name);
 
     return 0;
 }

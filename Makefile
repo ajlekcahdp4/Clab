@@ -15,4 +15,4 @@ mnk:
 writetex.o:
 	$(CC) -c writetex/writetex.c
 clean:
-	rm -rf *.o *.out *.tex *.zip data_mnk.txt graph.eps average_values.txt
+	rm -rf *.o *.out *.tex *.zip data_mnk.txt *.eps *.png average_values.txt 

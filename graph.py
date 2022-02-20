@@ -22,8 +22,6 @@ def DrawGraph (N, x, y, a, b, ad, bd, filename, name1, name2):
     ax.plot(line, c = 'blue', label="График по МНК")
     ax.scatter(x, y, c = 'red', label="Измеренные точки")
     
-    #Xs = list((int(i) for i in range (int(min(x)), int(max(x) * (1 + 0.1) + 1), 5)))
-    #ax.set_xticks(Xs)
     
     ax.legend()
     
@@ -34,5 +32,4 @@ def DrawGraph (N, x, y, a, b, ad, bd, filename, name1, name2):
     
     
 
-
-    plt.savefig('graph.eps')
+    plt.savefig(str(input("Enter the name for graph picture file\n")))

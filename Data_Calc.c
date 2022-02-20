@@ -36,8 +36,10 @@ mnk* MnkCalc (char* file_name)
     int N = 0;
     mnk * MNK = calloc (1, sizeof (mnk));
 
-
-    FILE* inputfile = fopen ("input.txt", "r");
+    char* input_name = calloc (100, sizeof(char));
+    printf ("Enter the name of file with data for mnk calculation:\n");
+    scanf ("%s", input_name);
+    FILE* inputfile = fopen (input_name, "r");
 
     
     fscanf(inputfile, "%d", &N);

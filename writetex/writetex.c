@@ -22,7 +22,7 @@ void IncludePic (FILE* f, char* pic)
 
 void LineDev (FILE* f)
 {
-    FILE* datafile = fopen ("data.txt", "r");
+    FILE* datafile = fopen ("data_mnk.txt", "r");
 
     int N = 0;
     fscanf (datafile, "%d", &N);
@@ -49,7 +49,7 @@ void LineDev (FILE* f)
 
 
     fprintf (f, "Полученная линейная (вида $y = ax + b$) зависимость: $y = %.4gx + %.4g$\\\\\n", a, b);
-    fprintf (f, "$\\sigma_a = %.4g$ , \\$sigma_b = %.4g$\\\\\n", ad, bd);
+    fprintf (f, "$\\sigma_a = %.4g$ , $\\sigma_b = %.4g$\\\\\n", ad, bd);
     fclose(datafile);
     free (x);
     free(y);
