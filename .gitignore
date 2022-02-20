@@ -2,4 +2,6 @@
 *.out
 *.tex
 *.txt
+*.png
+*.eps
 __pycache__/

@@ -15,4 +15,4 @@ mnk:
 writetex.o:
 	$(CC) -c writetex/writetex.c
 clean:
-	rm -rf *.o *.out *.tex *.zip data.txt graph.png 
+	rm -rf *.o *.out *.tex *.zip data.txt graph.png graph.eps

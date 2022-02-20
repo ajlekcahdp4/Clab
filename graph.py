@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
 import numpy as np
 import mnk
-
+#GNUplot
+#Векторная графика .svg
 def DrawGraph (N, x, y, a, b, ad, bd, filename, name1, name2):
     line = np.array([a*z + b for z in range ( int(max(x) * (1 + 0.1) + 1))])
 
@@ -34,4 +35,4 @@ def DrawGraph (N, x, y, a, b, ad, bd, filename, name1, name2):
     
 
 
-    plt.savefig('graph.png')
+    plt.savefig('graph.eps')
