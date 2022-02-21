@@ -22,7 +22,7 @@ void MnkPrint (mnk* MNK);
 
 int main ()
 {
-    MnkCalc ("input.txt");
+    MnkCalc ("data/input.txt");
     CalcAverage ();
 
     return 0;
@@ -70,7 +70,7 @@ mnk* MnkCalc (char* file_name)
 
 void MnkPrint (mnk* MNK)
 {
-    FILE* out = fopen ("data_mnk.txt", "w");
+    FILE* out = fopen ("data/data_mnk.txt", "w");
 
     fprintf (out, "%d\n", MNK->N);
     for (int i = 0; i < MNK->N; i++)

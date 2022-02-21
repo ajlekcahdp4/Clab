@@ -14,7 +14,7 @@ void CalcAverage ()
     scanf ("%s", input_name);
 
     FILE* input  = fopen (input_name, "r");
-    FILE* output = fopen ("average_values.txt", "w");
+    FILE* output = fopen ("data/average_values.txt", "w");
     
     int n_row = 0;
     fscanf (input, "%d", &n_row);

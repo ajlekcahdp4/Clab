@@ -6,7 +6,7 @@ import numpy as np
 import mnk
 #GNUplot
 #Векторная графика .svg
-def DrawGraph (N, x, y, a, b, ad, bd, filename, name1, name2):
+def DrawGraph (N, x, y, a, b, ad, bd, name1, name2):
     line = np.array([a*z + b for z in range ( int(max(x) * (1 + 0.1) + 1))])
 
     fig, ax = plt.subplots(figsize=(8, 6))

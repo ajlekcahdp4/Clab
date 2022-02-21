@@ -8,7 +8,7 @@ int main ()
 {
     setlocale (LC_ALL, "Rus");
 
-    FILE* fp = fopen ("data_mnk.txt", "r");
+    FILE* fp = fopen ("data/data_mnk.txt", "r");
 
     int N = 0;
     fscanf (fp, "%d", &N);
@@ -49,7 +49,7 @@ int main ()
 //=================================================================
     PrintStart (f, lab_name);
     TabForGraph(f, x, y, N);
-    IncludePic (f, "graph.eps");
+    IncludePic (f, "data/graph.eps");
     LineDev (f);
     PrintEnd (f);
 

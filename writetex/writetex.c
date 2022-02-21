@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <assert.h>
 #include "writetex.h"
 #include "../mnk/mnk.h"
 void PrintStart (FILE* f, char* lab_num)
@@ -22,8 +23,9 @@ void IncludePic (FILE* f, char* pic)
 
 void LineDev (FILE* f)
 {
-    FILE* datafile = fopen ("data_mnk.txt", "r");
-
+    assert (f);
+    FILE* datafile = fopen ("data/data_mnk.txt", "r");
+    assert(datafile);
     int N = 0;
     fscanf (datafile, "%d", &N);
    
