@@ -23,7 +23,6 @@ void CalcAverage ()
     fscanf(input, "%d", &N);
 
     double* row = calloc (N, sizeof (double));
-
     for (int j = 0; j < n_row; j++)
     {
         for (int i = 0; i < N; i++)

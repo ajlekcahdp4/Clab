@@ -69,12 +69,44 @@ void TabForGraph (FILE * f, double* x, double* y, int N)
     fprintf(f, "\\\\\\hline\n");
 
     for (int i = 0; i < N; i++)
-        fprintf (f, "&%.4lf", y[i]);
+        fprintf (f, "&%.1lf", y[i]);
     fprintf(f, "\\\\\\hline\n");
 
     fprintf (f, "\\end{tabular}\n$$\n\n");
 }
 
+void Tabular (FILE *f)
+{
+    FILE *input = fopen ("data/average_input.txt", "r");
+    FILE *average = fopen ("data/average_values.txt", "r");
+    int n_rows = 0;
+    int N = 0;
+    int val = 0;
+    double av = 0;
+    double dev = 0;
+
+    fscanf (input, "%d", &n_rows);
+    fscanf (input, "%d", &N);
+
+    fprintf (f, "$$\n\\begin{tabular}{|c|");
+    for (int i = 0; i < N + 2; i++)
+        fprintf(f, "c|");
+    fprintf (f, "}\n\\hline\n");
+
+    for (int i = 0; i < n_rows; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            fscanf (input, "%d", &val);
+            fprintf (f, "&%d", val);
+        }
+        fscanf (average, "%lf", &av);
+        fscanf (average, "%lf", &dev);
+        fprintf (f, "&%g&%g", av, dev);
+        fprintf(f, "\\\\\\hline\n");
+    }
+    fprintf (f, "\\end{tabular}\n$$\n\n");
+}
 void PrintEnd (FILE* f)
 {
     fprintf (f, "\\textbf{Краткие выводы:}\n\n");

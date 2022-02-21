@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 #include <stdlib.h>
 #include "mnk/mnk.h"
 #include "average/average.h"
@@ -55,12 +56,13 @@ mnk* MnkCalc ()
 
     for (int i = 0; i < N; i++)
     {
-        fscanf(inputfile, "%lf", MNK->y + i);
+        assert(fscanf(inputfile, "%lf", MNK->y + i));
     }
     MNK->a  = Get_a   (MNK->x, MNK->y, N);
     MNK->b  = Get_b   (MNK->x, MNK->y, N);
     MNK->ad = Get_ad  (MNK->x, MNK->y, N);
     MNK->bd = Get_bd  (MNK->x, MNK->y, N);
+
     MnkPrint (MNK);
 
     free (MNK->x);

@@ -16,7 +16,6 @@ int main ()
     double* x = calloc (N, sizeof(double));
     for (int i = 0; i < N ; i++)
         fscanf (fp, "%lf", x + i);
-
     double* y = calloc (N, sizeof(double));
     for (int i = 0; i < N ; i++)
         fscanf (fp, "%lf", y + i);
@@ -48,6 +47,7 @@ int main ()
 //===========Here=you=can=combine=your=own=.tex=file:==============
 //=================================================================
     PrintStart (f, lab_name);
+    Tabular (f);
     TabForGraph(f, x, y, N);
     IncludePic (f, "tex/graph.eps");
     LineDev (f);
