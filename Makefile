@@ -2,17 +2,20 @@ CC = gcc
 all: MakeTex
 
 MakeTex: Graph main writetex.o
-	$(CC) -g main.o writetex.o -o MakeTex.out
+	$(CC) main.o writetex.o -o MakeTex.out
 	./MakeTex.out
-Graph:
-	$(CC) -g Data_calc.c mnk/mnk.c average/average.c -lm -o datacalc.out
-	./datacalc.out
+Graph: datacalc
 	python3 main.py
+datacalc: mnkcalc averagecalc
+	$(CC) Data_calc.c mnk.o average.o -o datacalc.out -lm
+	./datacalc.out
+averagecalc:
+	$(CC) -c average/average.c
 main:
-	$(CC) -c -g main.c 
-mnk:
-	$(CC) -c -g mnk/mnk.c
+	$(CC) -c main.c 
+mnkcalc:
+	$(CC) -c mnk/mnk.c
 writetex.o:
-	$(CC) -c -g writetex/writetex.c
+	$(CC) -c writetex/writetex.c
 clean:
 	rm -rf *.o *.out *.tex *.zip tex/* data/*.pdf data/average_values.txt data/data_mnk.txt

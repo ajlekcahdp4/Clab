@@ -49,7 +49,7 @@ int main ()
 //=================================================================
     PrintStart (f, lab_name);
     TabForGraph(f, x, y, N);
-    IncludePic (f, "data/graph.eps");
+    IncludePic (f, "tex/graph.eps");
     LineDev (f);
     PrintEnd (f);
 

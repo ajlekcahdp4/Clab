@@ -14,7 +14,7 @@ typedef struct mnk {
 } mnk;
 
 
-mnk* MnkCalc (char* file_name);
+mnk* MnkCalc (void);
 void MnkPrint (mnk* MNK);
 
 
@@ -22,7 +22,7 @@ void MnkPrint (mnk* MNK);
 
 int main ()
 {
-    MnkCalc ("data/input.txt");
+    MnkCalc ();
     CalcAverage ();
 
     return 0;
@@ -31,7 +31,7 @@ int main ()
 
 
 
-mnk* MnkCalc (char* file_name)
+mnk* MnkCalc ()
 {
     int N = 0;
     mnk * MNK = calloc (1, sizeof (mnk));
