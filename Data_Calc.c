@@ -24,7 +24,7 @@ void MnkPrint (mnk* MNK);
 int main ()
 {
     MnkCalc ();
-    CalcAverage ();
+    //CalcAverage ();
 
     return 0;
 }

@@ -11,8 +11,9 @@ void PrintStart (FILE* f, char* lab_num)
     fprintf (f, "\\begin{document}\n");
     fprintf (f, "\\maketitle\n");
     fprintf (f, "\\section{Введение}\n");
-    fprintf (f, "\\textbf{Цель работы:}\n\n");
-    fprintf (f, "\\textbf{Используемое оборудование:}\n\n");
+    fprintf (f, "\\textbf{Цель работы:}\\\\\n\n");
+    fprintf (f, "\\textbf{Используемое оборудование:}\\\\\n\n");
+    fprintf(f, "\n\n\n\\section{Работа:}\n\n");
 }
 void IncludePic (FILE* f, char* pic)
 {
@@ -64,8 +65,10 @@ void TabForGraph (FILE * f, double* x, double* y, int N)
         fprintf(f, "c|");
     fprintf (f, "}\n\\hline\n");
 
+    fprintf("\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", N + 1);
+
     for (int i = 0; i < N; i++)
-        fprintf (f, "&%.4lf", x[i]);
+        fprintf (f, "&%.1lf", x[i]);
     fprintf(f, "\\\\\\hline\n");
 
     for (int i = 0; i < N; i++)
@@ -81,7 +84,7 @@ void Tabular (FILE *f)
     FILE *average = fopen ("data/average_values.txt", "r");
     int n_rows = 0;
     int N = 0;
-    int val = 0;
+    double val = 0;
     double av = 0;
     double dev = 0;
 
@@ -97,8 +100,8 @@ void Tabular (FILE *f)
     {
         for (int j = 0; j < N; j++)
         {
-            fscanf (input, "%d", &val);
-            fprintf (f, "&%d", val);
+            fscanf (input, "%lf", &val);
+            fprintf (f, "&%g", val);
         }
         fscanf (average, "%lf", &av);
         fscanf (average, "%lf", &dev);
@@ -109,6 +112,6 @@ void Tabular (FILE *f)
 }
 void PrintEnd (FILE* f)
 {
-    fprintf (f, "\\textbf{Краткие выводы:}\n\n");
+    fprintf (f, "\\section{Краткие выводы:}\n\n");
     fprintf (f, "\\end{document}");
 }
