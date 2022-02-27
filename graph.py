@@ -3,7 +3,6 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
 import numpy as np
-import mnk
 #GNUplot
 #Векторная графика .svg
 def DrawGraph (N, x, y, a, b, ad, bd, name1, name2):
@@ -21,16 +20,12 @@ def DrawGraph (N, x, y, a, b, ad, bd, name1, name2):
 
     ax.plot(X, Y, c = 'blue', label="График по МНК")
     ax.scatter(x, y, c = 'red', label="Измеренные точки")
-    #plt.plot ([200, 250, 270, 304], [0.001, 0.004, 0.009, 0.0095], color = "red")
-    
     
     ax.legend()
-    
+
     ax.xaxis.set_minor_locator(AutoMinorLocator())
     ax.yaxis.set_minor_locator(AutoMinorLocator())
     ax.tick_params(which='major', length=10, width=2)
     ax.tick_params(which='minor', length=5, width=1)
     
-    
-
     plt.savefig(str(input("Enter the name for graph picture file\n")))
