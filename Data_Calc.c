@@ -15,7 +15,7 @@ typedef struct mnk {
 } mnk;
 
 
-mnk* MnkCalc (void);
+void MnkCalc (void);
 void MnkPrint (mnk* MNK);
 
 
@@ -24,7 +24,7 @@ void MnkPrint (mnk* MNK);
 int main ()
 {
     MnkCalc ();
-    //CalcAverage ();
+    CalcAverage ();
 
     return 0;
 }
@@ -32,7 +32,7 @@ int main ()
 
 
 
-mnk* MnkCalc ()
+void MnkCalc ()
 {
     int N = 0;
     mnk * MNK = calloc (1, sizeof (mnk));
