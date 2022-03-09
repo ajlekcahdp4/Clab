@@ -5,3 +5,4 @@
 *.png
 *.eps
 __pycache__/
+tex/
