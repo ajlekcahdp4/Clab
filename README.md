@@ -1,5 +1,5 @@
 # lab calculation and auto tex writing
-Table of contents:
+## Table of contents:
 
 [How to clone](#How_to_clone)
 
