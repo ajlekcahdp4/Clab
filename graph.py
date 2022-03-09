@@ -6,7 +6,11 @@ import numpy as np
 #GNUplot
 #Векторная графика .svg
 def DrawGraph (N, x, y, a, b, ad, bd, name1, name2):
-    X = np.linspace (min(x)* 0.95, max(x)* 1.05, 100)
+    
+    max_x = max(x)
+    min_x = min(x)
+
+    X = np.linspace (min_x - 0.2*(max_x - min_x), max_x + 0.2*(max_x - min_x), 100)
     Y = np.array([a*x_c + b for x_c in X])
     fig, ax = plt.subplots(figsize=(8, 6))
 
