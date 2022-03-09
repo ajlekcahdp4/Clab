@@ -18,4 +18,4 @@ mnkcalc:
 writetex.o:
 	$(CC) -c writetex/writetex.c
 clean:
-	rm -rf *.o *.out *.tex *.zip data/*.pdf data/average_values.txt data/data_mnk.txt *.log *.aux *.pdf
+	rm -rf *.o *.out *.tex *.zip data/*.pdf data/average_values.txt data/data_mnk.txt *.log *.aux *.pdf *.png
