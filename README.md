@@ -2,6 +2,7 @@
 Table of contents:
 
 [How to clone](#How_to_clone)
+
 [Dependencies](#Dependencies)
 ## How to clone
 To clone this repo run:
