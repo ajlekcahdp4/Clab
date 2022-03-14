@@ -6,7 +6,7 @@
 
 int main ()
 {
-    system ("./bash_scripts/mkdir.sh data1");
+    system ("./bash_scripts/mkdir.sh data");
     MnkCalc ();
     //CalcAverage ();
 

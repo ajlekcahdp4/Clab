@@ -1,9 +1,61 @@
+#include <stdio.h>
+#include <locale.h>
 #include <stdlib.h>
 #include <assert.h>
 #include "writetex.h"
 #include "../mnk/mnk.h"
-void PrintStart (FILE* f, char* lab_num)
+#undef NDEBUG
+
+FILE* Start (struct mnk *MNK)
 {
+    setlocale (LC_ALL, "Rus");
+
+    FILE* fp = fopen ("data/data_mnk.txt", "r");
+    assert (fp);
+
+    fscanf (fp, "%d", &MNK->N);
+   
+    //if (MNK->y == 0)
+        MNK->x = calloc (MNK->N, sizeof(double));
+    //if (MNK->x == 0)
+        MNK->y = calloc (MNK->N, sizeof(double));
+        assert (MNK->y);
+    
+    for (int i = 0; i < MNK->N ; i++)
+        fscanf (fp, "%lf", MNK->x + i);
+    for (int i = 0; i < MNK->N ; i++)
+        fscanf (fp, "%lf", MNK->y + i);
+
+    fscanf (fp, "%lf", &MNK->a);
+    fscanf (fp, "%lf", &MNK->b);
+    fscanf (fp, "%lf", &MNK->ad);
+    fscanf (fp, "%lf", &MNK->bd);
+    
+    
+    char* file_name = calloc (100, sizeof(char));
+    
+    printf("Enter texfile name: ");
+    scanf ("%s", file_name);
+
+    FILE* f = fopen (file_name, "w");
+
+    free(file_name);
+    fclose(fp);
+
+    free (MNK->x);
+    free (MNK->y);
+    free (MNK);
+    
+    return f;
+}
+
+void PrintStart (FILE* f)
+{
+
+    printf("Enter number of lab\n");
+    char* lab_num = calloc (10, sizeof(char));
+    scanf ("%s", lab_num);
+    
     fprintf (f, "\\documentclass{article}\n\\usepackage[T2A]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage[russian]{babel}\n");
     fprintf (f, "\\usepackage{graphicx}\n\\graphicspath{ {./images/} }\n");
     fprintf (f, "\\title{Лабораторная работа № %s}\n", lab_num);
@@ -14,6 +66,8 @@ void PrintStart (FILE* f, char* lab_num)
     fprintf (f, "\\textbf{Цель работы:}\\\\\n\n");
     fprintf (f, "\\textbf{Используемое оборудование:}\\\\\n\n");
     fprintf(f, "\n\n\n\\section{Работа:}\n\n");
+
+    free (lab_num);
 }
 void IncludePic (FILE* f, char* pic)
 {
@@ -57,22 +111,22 @@ void LineDev (FILE* f)
     free (x);
     free(y);
 }
-void TabForGraph (FILE * f, double* x, double* y, int N)
+void TabForGraph (FILE * f, struct mnk *MNK)
 {
     fprintf (f, "$$\n");
     fprintf (f, "\\begin{tabular}{|c|");
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < MNK->N; i++)
         fprintf(f, "c|");
     fprintf (f, "}\n\\hline\n");
 
-    fprintf("\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", N + 1);
+    fprintf(f, "\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", MNK->N + 1);
 
-    for (int i = 0; i < N; i++)
-        fprintf (f, "&%.1lf", x[i]);
+    for (int i = 0; i < MNK->N; i++)
+        fprintf (f, "&%.1lf", MNK->x[i]);
     fprintf(f, "\\\\\\hline\n");
 
-    for (int i = 0; i < N; i++)
-        fprintf (f, "&%.1lf", y[i]);
+    for (int i = 0; i < MNK->N; i++)
+        fprintf (f, "&%.1lf", MNK->y[i]);
     fprintf(f, "\\\\\\hline\n");
 
     fprintf (f, "\\end{tabular}\n$$\n\n");
