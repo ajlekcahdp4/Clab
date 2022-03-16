@@ -11,9 +11,7 @@ int main ()
 //===========Here=you=can=combine=your=own=.tex=file:==============
 //=================================================================
     FILE *f = Start (MNK);
-    
     PrintStart (f);
-
     TabForGraph(f, MNK);
     IncludePic (f, "tex/graph1.eps");
 

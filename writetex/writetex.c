@@ -40,11 +40,6 @@ FILE* Start (struct mnk *MNK)
     FILE* f = fopen (file_name, "w");
 
     free(file_name);
-    fclose(fp);
-
-    free (MNK->x);
-    free (MNK->y);
-    free (MNK);
     
     return f;
 }
@@ -126,7 +121,7 @@ void TabForGraph (FILE * f, struct mnk *MNK)
     fprintf(f, "\\\\\\hline\n");
 
     for (int i = 0; i < MNK->N; i++)
-        fprintf (f, "&%.1lf", MNK->y[i]);
+        fprintf (f, "&%.3lf", MNK->y[i]);
     fprintf(f, "\\\\\\hline\n");
 
     fprintf (f, "\\end{tabular}\n$$\n\n");
