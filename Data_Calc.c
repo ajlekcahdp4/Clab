@@ -6,6 +6,7 @@
 
 int main ()
 {
+    system ("chmod +x bash_scripts/*");
     system ("./bash_scripts/mkdir.sh data");
     MnkCalc ();
     //CalcAverage ();
