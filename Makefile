@@ -15,6 +15,9 @@ MakeTex: Graph main writetex.o
 	./MakeTex.out
 Graph: datacalc
 	python3 main.py
+Tex:
+	$(CC) main.o writetex.o -o tex.out
+	./tex.out
 datacalc: mnkcalc averagecalc
 	chmod +x bash_scripts/mkdir.sh
 	./bash_scripts/mkdir.sh data
