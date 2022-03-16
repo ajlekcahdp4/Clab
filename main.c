@@ -14,10 +14,14 @@ int main ()
     PrintStart (f);
     TabForGraph(f, MNK);
     IncludePic (f, "tex/graph1.eps");
-
-
-
     LineDev (f);
+    
+    IncludePic (f, "tex/graph2.eps");
+    IncludePic (f, "tex/graph3.eps");
+    IncludePic (f, "tex/graph4.eps");
+
+
+    
     PrintEnd (f);
 
 //=================================================================
