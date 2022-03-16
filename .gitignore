@@ -4,5 +4,6 @@
 *.txt
 *.png
 *.eps
+*.dat
 __pycache__/
 tex/
