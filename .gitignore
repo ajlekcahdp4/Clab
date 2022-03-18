@@ -8,5 +8,6 @@
 *.log
 *.aux
 *.pdf
+.config
 __pycache__/
 tex/
