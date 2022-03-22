@@ -10,7 +10,7 @@
 ## How to clone
 To clone this repo run:
 ```
-git clone https://github.com/ajlekcahdp4/lab_calc
+git clone git@github.com:ajlekcahdp4/Clab.git
 cd lab_calc
 ```
 ## Dependencies
