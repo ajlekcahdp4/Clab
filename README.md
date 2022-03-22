@@ -1,4 +1,4 @@
-# Clab
+# <center>Clab</center>
 ## Make your lab creating process more easier
 ## Table of contents:
 
