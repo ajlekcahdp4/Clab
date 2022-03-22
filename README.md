@@ -1,4 +1,5 @@
-# lab calculation and auto tex writing
+# Clab
+## Make your lab creating process more easier
 ## Table of contents:
 
 [How to clone](#How_to_clone)
