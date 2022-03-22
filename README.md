@@ -1,4 +1,6 @@
-# <center>Clab</center>
+
+# <p align="center"> Clab </p>
+
 ## Make your lab creating process more easier
 ## Table of contents:
 
