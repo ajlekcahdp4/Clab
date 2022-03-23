@@ -10,7 +10,7 @@
 ## How to clone
 To clone this repo run:
 ```
-git clone git@github.com:ajlekcahdp4/Clab.git
+https://github.com/ajlekcahdp4/Clab.git
 cd lab_calc
 ```
 ## Dependencies
@@ -20,10 +20,19 @@ You can install [gcc compiller](https://gcc.gnu.org) by running:
 ```
 sudo apt install gcc
 ```
+Or by using pacman:
+```
+sudo pacman -S gcc
+```
+
 ### python3
 You can install [python3](https://www.python.org/downloads/) by running:
 ```
 sudo apt install python3
+```
+Or by using pacman:
+```
+sudo pacman -S python3
 ```
 ### matplotlib
 To use graph plotting you need to install [matplotlib](https://matplotlib.org)
@@ -42,8 +51,8 @@ conda install matplotlib
 Enter your dots for graph in text file (you will be asked of the name of this file) by the way:
 ```
 4 //number of measurements
-1 2 3 4 //first row
-1 2 3 4 //second row
+1 2 3 4 //first row (abscissa)
+1 2 3 4 //second row (ordinate)
 ```
 ## To run only lsm (least squares method) and graph plotting:
 
