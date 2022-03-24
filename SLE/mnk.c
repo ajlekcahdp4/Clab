@@ -4,7 +4,6 @@
 #include <string.h>
 #include <assert.h>
 #include <math.h>
-#include "../SLE/SLE.h"
 
 
 struct lsm_linear {
@@ -30,7 +29,7 @@ struct lsm_pol {
     double *a;
 };
 
-void PolinomLsmPrint (struct lsm_pol *POL, size_t deg);
+
 //==================================================================================================
 //=============================================INPUT================================================
 //==================================================================================================
@@ -161,7 +160,7 @@ void LinearLsmCalc ()
 //==========================================POLINOM=LSM=============================================
 //==================================================================================================
 
-struct lsm_pol *PolinomCalc (struct input *INP, size_t deg)
+struct lsm_pol *PolinomCalc (struct input *INP)
 {
     struct lsm_pol *POL = calloc (1, sizeof(struct lsm_pol));
     assert (POL);
@@ -175,8 +174,7 @@ struct lsm_pol *PolinomCalc (struct input *INP, size_t deg)
     memcpy (POL->x, INP->x, POL->N * sizeof(double));
     memcpy (POL->y, INP->y, POL->N * sizeof(double));
 
-    POL->a = SolveSLE (INP, deg);
-    printf ("__ POL->a[0] = %lf\n", POL->a[0]);
+                /* Calculation */
     
     return POL;
 }
@@ -187,15 +185,12 @@ void PolinomLsmCalc ()
 {
     struct input *INP = Input ();
 
-    struct lsm_pol *POL = PolinomCalc (INP, 2);
-    
+    struct lsm_pol *POL = PolinomCalc (INP);
 
-    PolinomLsmPrint (POL, 2);
+    PolinomLsmPrint (POL);
 
     //free ()
 }
-
-
 
 
 
@@ -223,24 +218,4 @@ void LsmPrint (struct lsm_linear* LSM)
 
     fclose (out);
 
-}
-
-void PolinomLsmPrint (struct lsm_pol *POL, size_t deg)
-{
-    FILE* out = fopen ("data/data_lsm_pol.txt", "w");
-
-    fprintf (out, "%d\n", POL->N);
-
-    for (int i = 0; i <= deg; i++)
-        fprintf (out, "%.4g ", POL->x[i]);
-    fprintf (out, "\n");
-
-    for (int i = 0; i <= deg; i++)
-        fprintf (out, "%.4g ", POL->y[i]);
-    fprintf (out, "\n");
-
-    for (int i = 0; i <= deg; i++)
-        fprintf (out, "%.4g ", POL->a[i]);
-    fprintf (out, "\n");
-    
 }

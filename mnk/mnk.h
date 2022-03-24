@@ -9,4 +9,6 @@ double Get_b    (double* x, double* y, int N);
 double Get_ad   (double*x, double* y, int N);
 double Get_bd   (double*x, double* y, int N);
 void   LinearLsmCalc  (void);
+void PolinomLsmCalc (void);
+
 void   LsmPrint (struct lsm_linear* LSM);
