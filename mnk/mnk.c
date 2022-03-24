@@ -24,6 +24,8 @@ struct input {
 
 struct lsm_pol {
     int N;
+    double* x;
+    double* y;
     double *a;
 };
 
@@ -148,6 +150,10 @@ void LinearLsmCalc ()
     free (LSM->x);
     free (LSM->y);
     free (LSM);
+
+    free (INP->x);
+    free (INP->y);
+    free (INP);
 }
 
 //==================================================================================================
