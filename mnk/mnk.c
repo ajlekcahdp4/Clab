@@ -6,7 +6,7 @@
 #include <math.h>
 
 
-struct mnk_linear {
+struct lsm_linear {
     int     N;
     double* x;
     double* y;
@@ -22,7 +22,7 @@ struct input {
     double *y;
 };
 
-struct mnk_pol {
+struct lsm_pol {
     int N;
     double *a;
 };
@@ -47,7 +47,7 @@ struct input *Input ()
     struct input * INP = calloc (1, sizeof (struct input));
 
     char* input_name = calloc (100, sizeof(char));
-    printf ("Enter the name of file with data for mnk calculation:\n");
+    printf ("Enter the name of file with data for lsm calculation:\n");
     scanf ("%s", input_name);
     FILE* inputfile = fopen (input_name, "r");
     assert (inputfile);
@@ -114,40 +114,40 @@ double Get_bd (double*x, double* y, int N)
 }
 
 
-struct mnk_linear *LinearCalc (struct input *INP)
+struct lsm_linear *LinearCalc (struct input *INP)
 {
-    struct mnk_linear *MNK = calloc (1, sizeof (struct mnk_linear));
-    assert (MNK);
+    struct lsm_linear *LSM = calloc (1, sizeof (struct lsm_linear));
+    assert (LSM);
 
-    MNK->N = INP->N;
-    MNK->x = calloc (MNK->N, sizeof(double));
-    MNK->y = calloc (MNK->N, sizeof(double));
-    assert (MNK->y);
-    assert (MNK->x);
+    LSM->N = INP->N;
+    LSM->x = calloc (LSM->N, sizeof(double));
+    LSM->y = calloc (LSM->N, sizeof(double));
+    assert (LSM->y);
+    assert (LSM->x);
 
-    memcpy (MNK->x, INP->x, MNK->N * sizeof(double));
-    memcpy (MNK->y, INP->y, MNK->N * sizeof(double));
+    memcpy (LSM->x, INP->x, LSM->N * sizeof(double));
+    memcpy (LSM->y, INP->y, LSM->N * sizeof(double));
 
-    MNK->a  = Get_a   (MNK->x, MNK->y, MNK->N);
-    MNK->b  = Get_b   (MNK->x, MNK->y, MNK->N);
-    MNK->ad = Get_ad  (MNK->x, MNK->y, MNK->N);
-    MNK->bd = Get_bd  (MNK->x, MNK->y, MNK->N);
+    LSM->a  = Get_a   (LSM->x, LSM->y, LSM->N);
+    LSM->b  = Get_b   (LSM->x, LSM->y, LSM->N);
+    LSM->ad = Get_ad  (LSM->x, LSM->y, LSM->N);
+    LSM->bd = Get_bd  (LSM->x, LSM->y, LSM->N);
 
-    return MNK;
+    return LSM;
 }
 
 
-void LinearMnkCalc ()
+void LinearLsmCalc ()
 {
     struct input *INP = Input();
 
-    struct mnk_linear *MNK = LinearCalc (INP);
+    struct lsm_linear *LSM = LinearCalc (INP);
 
-    MnkPrint (MNK);
+    LsmPrint (LSM);
 
-    free (MNK->x);
-    free (MNK->y);
-    free (MNK);
+    free (LSM->x);
+    free (LSM->y);
+    free (LSM);
 }
 
 //==================================================================================================
@@ -157,29 +157,27 @@ void LinearMnkCalc ()
 
 
 
-
-
 //==================================================================================================
 //============================================OUTPUT================================================
 //==================================================================================================
 
-void MnkPrint (struct mnk_linear* MNK)
+void LsmPrint (struct lsm_linear* LSM)
 {
-    FILE* out = fopen ("data/data_mnk.txt", "w");
+    FILE* out = fopen ("data/data_lsm.txt", "w");
 
-    fprintf (out, "%d\n", MNK->N);
-    for (int i = 0; i < MNK->N; i++)
-        fprintf (out, "%.4g ", MNK->x[i]);
+    fprintf (out, "%d\n", LSM->N);
+    for (int i = 0; i < LSM->N; i++)
+        fprintf (out, "%.4g ", LSM->x[i]);
     fprintf (out, "\n");
 
-    for (int i = 0; i < MNK->N; i++)
-        fprintf (out, "%.4g ", MNK->y[i]);
+    for (int i = 0; i < LSM->N; i++)
+        fprintf (out, "%.4g ", LSM->y[i]);
     fprintf (out, "\n");
 
-    fprintf (out, "%.4g\n", MNK->a);
-    fprintf (out, "%.4g\n", MNK->b);
-    fprintf (out, "%.4g\n", MNK->ad);
-    fprintf (out, "%.4g\n", MNK->bd);
+    fprintf (out, "%.4g\n", LSM->a);
+    fprintf (out, "%.4g\n", LSM->b);
+    fprintf (out, "%.4g\n", LSM->ad);
+    fprintf (out, "%.4g\n", LSM->bd);
 
     fclose (out);
 

@@ -1,5 +1,5 @@
 
-struct mnk_linear;
+struct lsm_linear;
 
 double Sum      (double* a, int N);
 double SumMul   (double* a, double* b, int N);
@@ -8,5 +8,5 @@ double Get_a    (double* x, double* y, int N);
 double Get_b    (double* x, double* y, int N);
 double Get_ad   (double*x, double* y, int N);
 double Get_bd   (double*x, double* y, int N);
-void   LinearMnkCalc  (void);
-void   MnkPrint (struct mnk_linear* MNK);
+void   LinearLsmCalc  (void);
+void   LsmPrint (struct lsm_linear* LSM);

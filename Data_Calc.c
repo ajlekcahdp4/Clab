@@ -5,6 +5,6 @@
 
 int main ()
 {
-    LinearMnkCalc ();
+    LinearLsmCalc ();
     return 0;
 }
