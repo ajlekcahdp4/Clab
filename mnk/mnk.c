@@ -75,7 +75,7 @@ double *InputRow (FILE *file, int N)
     return row;
 }
 
-void LinearMnkCalc ()
+struct mnk *Input ()
 {
     struct mnk * MNK = calloc (1, sizeof (struct mnk));
 
@@ -90,6 +90,12 @@ void LinearMnkCalc ()
     MNK->y = InputRow (inputfile, MNK->N);
 
     fclose (inputfile);
+    return MNK;
+}
+
+void LinearMnkCalc ()
+{
+    struct mnk * MNK = Input();
 
     MNK->a  = Get_a   (MNK->x, MNK->y, MNK->N);
     MNK->b  = Get_b   (MNK->x, MNK->y, MNK->N);
@@ -105,7 +111,19 @@ void LinearMnkCalc ()
 
 void PolinomMnkCalc ()
 {
+    struct mnk * MNK = calloc (1, sizeof (struct mnk));
 
+    char* input_name = calloc (100, sizeof(char));
+    printf ("Enter the name of file with data for mnk calculation:\n");
+    scanf ("%s", input_name);
+    FILE* inputfile = fopen (input_name, "r");
+
+    
+    fscanf(inputfile, "%d", &MNK->N);
+    MNK->x = InputRow (inputfile, MNK->N);
+    MNK->y = InputRow (inputfile, MNK->N);
+
+    fclose (inputfile);
 }
 
 void MnkPrint (struct mnk* MNK)
