@@ -65,10 +65,18 @@ double Get_bd (double*x, double* y, int N)
     return bd;
 }
 
+double *InputRow (FILE *file, int N)
+{
+    double *row = calloc (N, sizeof(double));
+    for (int i = 0; i < N; i++)
+    {
+        fscanf(file, "%lf", row + i);
+    }
+    return row;
+}
 
 void LinearMnkCalc ()
 {
-    int N = 0;
     struct mnk * MNK = calloc (1, sizeof (struct mnk));
 
     char* input_name = calloc (100, sizeof(char));
@@ -77,31 +85,27 @@ void LinearMnkCalc ()
     FILE* inputfile = fopen (input_name, "r");
 
     
-    fscanf(inputfile, "%d", &N);
+    fscanf(inputfile, "%d", &MNK->N);
+    MNK->x = InputRow (inputfile, MNK->N);
+    MNK->y = InputRow (inputfile, MNK->N);
 
-    MNK->N = N;
-    MNK->x = (double*)calloc(N, sizeof(double));
-    MNK->y = (double*)calloc(N, sizeof(double));
+    fclose (inputfile);
 
-    for (int i = 0; i < N; i++)
-    {
-        fscanf(inputfile, "%lf", MNK->x + i);
-    }
-
-    for (int i = 0; i < N; i++)
-    {
-        assert(fscanf(inputfile, "%lf", MNK->y + i));
-    }
-    MNK->a  = Get_a   (MNK->x, MNK->y, N);
-    MNK->b  = Get_b   (MNK->x, MNK->y, N);
-    MNK->ad = Get_ad  (MNK->x, MNK->y, N);
-    MNK->bd = Get_bd  (MNK->x, MNK->y, N);
+    MNK->a  = Get_a   (MNK->x, MNK->y, MNK->N);
+    MNK->b  = Get_b   (MNK->x, MNK->y, MNK->N);
+    MNK->ad = Get_ad  (MNK->x, MNK->y, MNK->N);
+    MNK->bd = Get_bd  (MNK->x, MNK->y, MNK->N);
 
     MnkPrint (MNK);
 
     free (MNK->x);
     free (MNK->y);
     free (MNK);
+}
+
+void PolinomMnkCalc ()
+{
+
 }
 
 void MnkPrint (struct mnk* MNK)
