@@ -1,11 +1,12 @@
 #include "mnk.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <assert.h>
 #include <math.h>
 
 
-struct mnk {
+struct mnk_linear {
     int     N;
     double* x;
     double* y;
@@ -15,8 +16,55 @@ struct mnk {
     double  bd;
 };
 
+struct input {
+    int N;
+    double *x;
+    double *y;
+};
 
-//====================================================================================
+struct mnk_pol {
+    int N;
+    double *a;
+};
+
+
+//==================================================================================================
+//=============================================INPUT================================================
+//==================================================================================================
+
+double *InputRow (FILE *file, int N)
+{
+    double *row = calloc (N, sizeof(double));
+    for (int i = 0; i < N; i++)
+    {
+        fscanf(file, "%lf", row + i);
+    }
+    return row;
+}
+
+struct input *Input ()
+{
+    struct input * INP = calloc (1, sizeof (struct input));
+
+    char* input_name = calloc (100, sizeof(char));
+    printf ("Enter the name of file with data for mnk calculation:\n");
+    scanf ("%s", input_name);
+    FILE* inputfile = fopen (input_name, "r");
+    assert (inputfile);
+
+    
+    fscanf(inputfile, "%d", &INP->N);
+    INP->x = InputRow (inputfile, INP->N);
+    INP->y = InputRow (inputfile, INP->N);
+
+    fclose (inputfile);
+    return INP;
+}
+
+
+//==================================================================================================
+//===========================================LINEAR=LSM=============================================
+//==================================================================================================
 double Sum (double* a, int N)
 {
     double S = 0;
@@ -65,42 +113,35 @@ double Get_bd (double*x, double* y, int N)
     return bd;
 }
 
-double *InputRow (FILE *file, int N)
+
+struct mnk_linear *LinearCalc (struct input *INP)
 {
-    double *row = calloc (N, sizeof(double));
-    for (int i = 0; i < N; i++)
-    {
-        fscanf(file, "%lf", row + i);
-    }
-    return row;
-}
+    struct mnk_linear *MNK = calloc (1, sizeof (struct mnk_linear));
+    assert (MNK);
 
-struct mnk *Input ()
-{
-    struct mnk * MNK = calloc (1, sizeof (struct mnk));
+    MNK->N = INP->N;
+    MNK->x = calloc (MNK->N, sizeof(double));
+    MNK->y = calloc (MNK->N, sizeof(double));
+    assert (MNK->y);
+    assert (MNK->x);
 
-    char* input_name = calloc (100, sizeof(char));
-    printf ("Enter the name of file with data for mnk calculation:\n");
-    scanf ("%s", input_name);
-    FILE* inputfile = fopen (input_name, "r");
-
-    
-    fscanf(inputfile, "%d", &MNK->N);
-    MNK->x = InputRow (inputfile, MNK->N);
-    MNK->y = InputRow (inputfile, MNK->N);
-
-    fclose (inputfile);
-    return MNK;
-}
-
-void LinearMnkCalc ()
-{
-    struct mnk * MNK = Input();
+    memcpy (MNK->x, INP->x, MNK->N * sizeof(double));
+    memcpy (MNK->y, INP->y, MNK->N * sizeof(double));
 
     MNK->a  = Get_a   (MNK->x, MNK->y, MNK->N);
     MNK->b  = Get_b   (MNK->x, MNK->y, MNK->N);
     MNK->ad = Get_ad  (MNK->x, MNK->y, MNK->N);
     MNK->bd = Get_bd  (MNK->x, MNK->y, MNK->N);
+
+    return MNK;
+}
+
+
+void LinearMnkCalc ()
+{
+    struct input *INP = Input();
+
+    struct mnk_linear *MNK = LinearCalc (INP);
 
     MnkPrint (MNK);
 
@@ -109,24 +150,20 @@ void LinearMnkCalc ()
     free (MNK);
 }
 
-void PolinomMnkCalc ()
-{
-    struct mnk * MNK = calloc (1, sizeof (struct mnk));
+//==================================================================================================
+//==========================================POLINOM=LSM=============================================
+//==================================================================================================
 
-    char* input_name = calloc (100, sizeof(char));
-    printf ("Enter the name of file with data for mnk calculation:\n");
-    scanf ("%s", input_name);
-    FILE* inputfile = fopen (input_name, "r");
 
-    
-    fscanf(inputfile, "%d", &MNK->N);
-    MNK->x = InputRow (inputfile, MNK->N);
-    MNK->y = InputRow (inputfile, MNK->N);
 
-    fclose (inputfile);
-}
 
-void MnkPrint (struct mnk* MNK)
+
+
+//==================================================================================================
+//============================================OUTPUT================================================
+//==================================================================================================
+
+void MnkPrint (struct mnk_linear* MNK)
 {
     FILE* out = fopen ("data/data_mnk.txt", "w");
 
