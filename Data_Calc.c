@@ -6,7 +6,7 @@
 
 int main ()
 {
-    MnkCalc ();
+    LinearMnkCalc ();
     //CalcAverage ();
 
     return 0;

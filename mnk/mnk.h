@@ -8,5 +8,5 @@ double Get_a    (double* x, double* y, int N);
 double Get_b    (double* x, double* y, int N);
 double Get_ad   (double*x, double* y, int N);
 double Get_bd   (double*x, double* y, int N);
-void   MnkCalc  (void);
+void   LinearMnkCalc  (void);
 void   MnkPrint (struct mnk* MNK);

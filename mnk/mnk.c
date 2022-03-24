@@ -66,7 +66,7 @@ double Get_bd (double*x, double* y, int N)
 }
 
 
-void MnkCalc ()
+void LinearMnkCalc ()
 {
     int N = 0;
     struct mnk * MNK = calloc (1, sizeof (struct mnk));
