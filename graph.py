@@ -39,7 +39,7 @@ def DrawGraphLine (x, y, a, b, ad, bd, name1, name2):
 def DrawGraphPol (x, y, a, name1, name2):
     max_x = max(x)
     min_x = min(x)
-    X = np.linspace (min_x - 0.2*(max_x - min_x), max_x + 0.2*(max_x - min_x), 10)
+    X = np.linspace (min_x - 0.2*(max_x - min_x), max_x + 0.2*(max_x - min_x), 100)
 
     Y = []
     cur_y = 0
