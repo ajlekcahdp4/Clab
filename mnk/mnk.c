@@ -182,14 +182,14 @@ struct lsm_pol *PolinomCalc (struct input *INP, size_t deg)
 
 
 
-void PolinomLsmCalc ()
+void PolinomLsmCalc (int deg)
 {
     struct input *INP = Input ();
 
-    struct lsm_pol *POL = PolinomCalc (INP, 3);
+    struct lsm_pol *POL = PolinomCalc (INP, deg);
     
 
-    PolinomLsmPrint (POL, 3);
+    PolinomLsmPrint (POL, deg);
 
     free (INP->x);
     free (INP->y);
