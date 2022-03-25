@@ -83,6 +83,7 @@ double Gauss_Jordan (double** Matrix, size_t N)
         Elimination (Matrix, N, col);
 
         col++;
+        PrintMatrix (Matrix, 3);
     }
     det *= DiagonalDet (Matrix, N);
     //PrintMatrix (Matrix, N);
@@ -95,7 +96,7 @@ void Elimination (double** Matrix, size_t N, size_t col)
 {
     double k  = NULL_DOUBLE;
 
-    for (size_t row = 0; row < N; row++)
+    for (size_t row = 0; row <= N; row++)
     {
         if (row != col)
         {
@@ -229,22 +230,24 @@ double** StdinMatrixInit (size_t N)
 
 double **SLEmatrixInit (struct input *INP, int deg)
 {
-    double **Matrix = calloc (INP->N, sizeof (double*));
+    double **Matrix = calloc (deg + 1, sizeof (double*));
     assert (Matrix);
 
     for (size_t i = 0; i < INP->N; i++)
     {
-        Matrix[i] = calloc (INP->N + 1, sizeof (double));
+        Matrix[i] = calloc (deg + 1, sizeof (double));
         assert (Matrix[i]);
     }
 
-    for (size_t row = 0; row < INP->N; row++)
+    for (size_t row = 0; row <= deg; row++)
     {
-        for (size_t col = 0; col < INP->N; col++)
+        for (size_t col = 0; col <= deg; col++)
         {
             Matrix[row][col] = Find_Ck (INP, col + row);
+            printf ("C%d ", row + col);
         }
-        Matrix[row][INP->N] = Find_Bk (INP, row);
+        Matrix[row][deg + 1] = Find_Bk (INP, row);
+        printf ("B%d\n", row);
     }
     return Matrix;
 }
@@ -297,11 +300,14 @@ double *SolveSLE (struct input *INP, size_t deg)
     double *coefficients = calloc (deg + 1, sizeof(double));
 
     double **Matrix = SLEmatrixInit (INP, deg);
-    //PrintMatrix (Matrix, INP->N);
+    PrintMatrix (Matrix, deg + 1);
+
+    Gauss_Jordan (Matrix, deg + 1);
+    PrintMatrix (Matrix, deg + 1);
 
     for (size_t i = 0; i < INP->N; i++)
     {
-        coefficients[i] = Matrix[i][INP->N] / Matrix[i][i];
+        coefficients[i] = Matrix[i][deg + 1] / Matrix[i][i];
     }
 
     return coefficients;

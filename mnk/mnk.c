@@ -176,7 +176,6 @@ struct lsm_pol *PolinomCalc (struct input *INP, size_t deg)
     memcpy (POL->y, INP->y, POL->N * sizeof(double));
 
     POL->a = SolveSLE (INP, deg);
-    printf ("__ POL->a[0] = %lf\n", POL->a[0]);
     
     return POL;
 }
@@ -187,12 +186,18 @@ void PolinomLsmCalc ()
 {
     struct input *INP = Input ();
 
-    struct lsm_pol *POL = PolinomCalc (INP, 2);
+    struct lsm_pol *POL = PolinomCalc (INP, 3);
     
 
-    PolinomLsmPrint (POL, 2);
+    PolinomLsmPrint (POL, 3);
 
-    //free ()
+    free (INP->x);
+    free (INP->y);
+    free (INP);
+    free (POL->x);
+    free (POL->y);
+    free (POL->a);
+    free (POL);
 }
 
 
@@ -209,11 +214,11 @@ void LsmPrint (struct lsm_linear* LSM)
 
     fprintf (out, "%d\n", LSM->N);
     for (int i = 0; i < LSM->N; i++)
-        fprintf (out, "%.4g ", LSM->x[i]);
+        fprintf (out, "%-10.4g ", LSM->x[i]);
     fprintf (out, "\n");
 
     for (int i = 0; i < LSM->N; i++)
-        fprintf (out, "%.4g ", LSM->y[i]);
+        fprintf (out, "%-10.4g ", LSM->y[i]);
     fprintf (out, "\n");
 
     fprintf (out, "%.4g\n", LSM->a);
@@ -231,12 +236,12 @@ void PolinomLsmPrint (struct lsm_pol *POL, size_t deg)
 
     fprintf (out, "%d\n", POL->N);
 
-    for (int i = 0; i <= deg; i++)
-        fprintf (out, "%.4g ", POL->x[i]);
+    for (int i = 0; i < POL->N; i++)
+        fprintf (out, "%-10.4g ", POL->x[i]);
     fprintf (out, "\n");
 
-    for (int i = 0; i <= deg; i++)
-        fprintf (out, "%.4g ", POL->y[i]);
+    for (int i = 0; i < POL->N; i++)
+        fprintf (out, "%-10.4g ", POL->y[i]);
     fprintf (out, "\n");
 
     for (int i = 0; i <= deg; i++)
