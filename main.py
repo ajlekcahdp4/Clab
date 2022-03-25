@@ -1,13 +1,8 @@
-import graph
+import graph as G
+import input
 
-f = open ("data/data_lsm.txt", "r")
-N = int(f.readline ())
-x = list(map(float, (f.readline()).split()))
-y = list(map(float, (f.readline()).split()))
-a = float(f.readline())
-b = float(f.readline())
-ad = float(f.readline())
-bd = float(f.readline())
+#x, y, a, b, ad, bd = input.InputLinearLSM ("data/data_lsm.txt")
+#G.DrawGraphLine (x, y, a, b, ad, bd, "x", "y")
 
-graph.DrawGraph (N, x, y, a, b, ad, bd, "x", "y")
-f.close()
+x, y, a = input.InputPolinomLSM ("data/data_lsm_pol.txt")
+G.DrawGraphPol (x, y, a, "x", "y")
