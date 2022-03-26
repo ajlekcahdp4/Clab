@@ -4,54 +4,37 @@
 #include <assert.h>
 
 
-#define EPSILON (double)0.000000000001
-#define NULL_DOUBLE (double)0.0
+#define EPSILON (double)1e-7
+#define NULL_DOUBLE (double)0
 
-struct coordinates {
+struct coordinates
+{
     size_t row;
     size_t col;
 };
 
-struct input {
+struct input 
+{
     int N;
     double *x;
     double *y;
 };
 
 double** StdinMatrixInit   (size_t N);
-double      Gauss_Jordan (double **Matrix, size_t N);
+double   Gauss_Jordan (double **Matrix, size_t N);
+double   DiagonalDet  (double **Matrix, size_t N);
+double   Find_Bk      (struct input *INP, size_t k);
+double   Find_Ck      (struct input *INP, size_t k);
 void     Elimination  (double** Matrix, size_t N, size_t col);
 void     DeleteMatrix (double **Matrix, size_t N);
-int      DoubleCompr  (const double x, const double y, double EPS);
-double      DiagonalDet  (double **Matrix, size_t N);
 void     PrintMatrix  (double **Matrix, size_t N);
 void     SwitchRows   (double **Matrix, size_t N, size_t row1, size_t row2);
 void     SwitchCols   (double **Matrix, size_t N, size_t col1, size_t col2);
-struct coordinates *MaxElemInCol (double **Matrix, size_t N, size_t col);
-double Find_Bk (struct input *INP, size_t k);
-double Find_Ck (struct input *INP, size_t k);
-
-
+int      DoubleCompr  (const double x, const double y, double EPS);
+struct coordinates *MaxElemInCol    (double **Matrix, size_t N, size_t col);
 struct coordinates *MaxElemInMatrix (double** Matrix, size_t n, size_t N);
 
 
-
-/*
-int main ()
-{
-    size_t N = 0;
-    int res = 0;
-    double **Matrix = 0;
-
-    res = scanf ("%lu", &N);
-    assert (res);
-
-    Matrix = StdinMatrixInit (N);
-    printf ("%lf\n", Gauss_Jordan (Matrix, N));
-    DeleteMatrix (Matrix, N);
-    return 0;
-}
-*/
 
 //===========================================================================================
 //=====================================Gauss=Elimination=====================================
@@ -72,10 +55,9 @@ double Gauss_Jordan (double** Matrix, size_t N)
         Pcol = coord->col;
         free (coord);
         if (DoubleCompr (Matrix[Prow][Pcol], NULL_DOUBLE, EPSILON) == 0)
-            fprintf (stderr, "MATH_ERROR: The system of  linear equation has infinitely many solutions\n");
+            fprintf (stderr, "MATH_ERROR: The system of the linear equations has infinitely many solutions\n");
 
-
-        if (row != Prow)
+        if (col != Prow && Prow > col)
         {
             SwitchRows (Matrix, N, col, Prow);
             det *= -1;
