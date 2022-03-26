@@ -10,7 +10,7 @@ FILE* Start (struct mnk *MNK)
 {
     setlocale (LC_ALL, "Rus");
 
-    FILE* fp = fopen ("data/data_lsm.txt", "r");
+    FILE* fp = fopen ("data/data_lsm.res", "r");
     assert (fp);
 
     fscanf (fp, "%d", &MNK->N);
@@ -74,7 +74,7 @@ void IncludePic (FILE* f, char* pic)
 void LineDev (FILE* f)
 {
     assert (f);
-    FILE* datafile = fopen ("data/data_lsm.txt", "r");
+    FILE* datafile = fopen ("data/data_lsm.res", "r");
     assert(datafile);
     int N = 0;
     fscanf (datafile, "%d", &N);

@@ -210,7 +210,7 @@ void PolinomLsmCalc (int deg)
 
 void LsmPrint (struct lsm_linear* LSM)
 {
-    FILE* out = fopen ("data/data_lsm.txt", "w");
+    FILE* out = fopen ("data/data_lsm.res", "w");
 
     fprintf (out, "%d\n", LSM->N);
     for (int i = 0; i < LSM->N; i++)
@@ -232,7 +232,7 @@ void LsmPrint (struct lsm_linear* LSM)
 
 void PolinomLsmPrint (struct lsm_pol *POL, size_t deg)
 {
-    FILE* out = fopen ("data/data_lsm_pol.txt", "w");
+    FILE* out = fopen ("data/data_lsm_pol.res", "w");
 
     fprintf (out, "%d\n", POL->N);
 
