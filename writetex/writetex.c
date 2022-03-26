@@ -10,7 +10,7 @@ FILE* Start (struct mnk *MNK)
 {
     setlocale (LC_ALL, "Rus");
 
-    FILE* fp = fopen ("data/data_mnk.txt", "r");
+    FILE* fp = fopen ("data/data_lsm.txt", "r");
     assert (fp);
 
     fscanf (fp, "%d", &MNK->N);
@@ -74,7 +74,7 @@ void IncludePic (FILE* f, char* pic)
 void LineDev (FILE* f)
 {
     assert (f);
-    FILE* datafile = fopen ("data/data_mnk.txt", "r");
+    FILE* datafile = fopen ("data/data_lsm.txt", "r");
     assert(datafile);
     int N = 0;
     fscanf (datafile, "%d", &N);
@@ -129,8 +129,8 @@ void TabForGraph (FILE * f, struct mnk *MNK)
 
 void Tabular (FILE *f)
 {
-    FILE *input = fopen ("data/average_input.txt", "r");
-    FILE *average = fopen ("data/average_values.txt", "r");
+    FILE *input = fopen ("data/average_input.txt", "r"); //WTF
+    FILE *average = fopen ("data/average_values.txt", "r"); //WTF
     int n_rows = 0;
     int N = 0;
     double val = 0;
