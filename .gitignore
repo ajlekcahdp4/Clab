@@ -2,6 +2,7 @@
 *.out
 *.tex
 *.txt
+*.res
 *.png
 *.eps
 *.dat
