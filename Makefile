@@ -34,4 +34,4 @@ writetex.o:
 SLE_:
 	$(CC) -g -c SLE/SLE.c
 clean:
-	rm -rf *.o *.out *.zip data/*.pdf data/average_values.txt data/data_mnk.txt *.log *.aux *.pdf *.png
+	rm -rf *.o *.out *.zip data/*.pdf data/average_values.txt data/data_mnk.txt *.log *.aux *.pdf *.png .vscode

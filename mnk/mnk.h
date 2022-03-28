@@ -1,5 +1,31 @@
 
-struct lsm_linear;
+
+struct lsm_linear {
+    int     N;
+    double* x;
+    double* y;
+    double  a;
+    double  b;
+    double  ad;
+    double  bd;
+};
+
+
+struct input {
+    int N;
+    double *x;
+    double *y;
+};
+
+struct lsm_pol {
+    int N;
+    double *x;
+    double *y;
+    double *a;
+};
+
+
+typedef struct lsm_linear lsm_exp;
 
 double Sum      (double* a, int N);
 double SumMul   (double* a, double* b, int N);
@@ -10,5 +36,5 @@ double Get_ad   (double*x, double* y, int N);
 double Get_bd   (double*x, double* y, int N);
 void   LinearLsmCalc  (void);
 void PolinomLsmCalc (int deg);
-
-void   LsmPrint (struct lsm_linear* LSM);
+lsm_exp *ExpCalc (struct input *INP);
+void ExpLsmCalc ();

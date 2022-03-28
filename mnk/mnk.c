@@ -7,30 +7,10 @@
 #include "../SLE/SLE.h"
 
 
-struct lsm_linear {
-    int     N;
-    double* x;
-    double* y;
-    double  a;
-    double  b;
-    double  ad;
-    double  bd;
-};
 
-struct input {
-    int N;
-    double *x;
-    double *y;
-};
-
-struct lsm_pol {
-    int N;
-    double *x;
-    double *y;
-    double *a;
-};
-
+void LsmPrint        (struct lsm_linear* LSM);
 void PolinomLsmPrint (struct lsm_pol *POL, size_t deg);
+void ExpLsmPrint     (lsm_exp *EXP);
 //==================================================================================================
 //=============================================INPUT================================================
 //==================================================================================================
@@ -199,14 +179,57 @@ void PolinomLsmCalc (int deg)
     free (POL->a);
     free (POL);
 }
+//==================================================================================================
+//===========================================EXP_LSM================================================
+//==================================================================================================
+
+
+lsm_exp *ExpCalc (struct input *INP)
+{
+    lsm_exp *EXP = calloc (1, sizeof(lsm_exp));
+    assert (EXP);
+
+    EXP->N = INP->N;
+    EXP->x = calloc (EXP->N, sizeof(double));
+    EXP->y = calloc (EXP->N, sizeof(double));
+    assert (EXP->x && EXP->y);
+
+    for (int i = 0; i < EXP->N; i++)
+        EXP->x[i] = INP->x[i];
+    for (int i = 0; i < EXP->N; i++)
+        EXP->y[i] = log (INP->y[i]);
+
+    EXP->a  = Get_a   (EXP->x, EXP->y, EXP->N);
+    EXP->b  = Get_b   (EXP->x, EXP->y, EXP->N);
+    EXP->ad = Get_ad  (EXP->x, EXP->y, EXP->N);
+    EXP->bd = Get_bd  (EXP->x, EXP->y, EXP->N);
+    
+    return EXP;
+}
 
 
 
+void ExpLsmCalc ()
+{
+    struct input *INP = Input ();
 
+    lsm_exp *EXP = ExpCalc (INP);
+    
+
+    ExpLsmPrint (EXP);
+
+    free (INP->x);
+    free (INP->y);
+    free (INP);
+    free (EXP->x);
+    free (EXP->y);
+    free (EXP);
+}
 
 //==================================================================================================
 //============================================OUTPUT================================================
 //==================================================================================================
+
 
 void LsmPrint (struct lsm_linear* LSM)
 {
@@ -248,4 +271,25 @@ void PolinomLsmPrint (struct lsm_pol *POL, size_t deg)
         fprintf (out, "%.4g ", POL->a[i]);
     fprintf (out, "\n");
     
+}
+
+void ExpLsmPrint (lsm_exp *EXP)
+{
+    FILE *out = fopen ("data/data_lsm_exp.res", "w");
+
+    fprintf (out, "%d\n", EXP->N);
+    for (int i = 0; i < EXP->N; i++)
+        fprintf (out, "%-10.4g ", EXP->x[i]);
+    fprintf (out, "\n");
+
+    for (int i = 0; i < EXP->N; i++)
+        fprintf (out, "%-10.4g ", EXP->y[i]);
+    fprintf (out, "\n");
+
+    fprintf (out, "%.4g\n", EXP->a);
+    fprintf (out, "%.4g\n", EXP->b);
+    fprintf (out, "%.4g\n", EXP->ad);
+    fprintf (out, "%.4g\n", EXP->bd);
+
+    fclose (out);
 }

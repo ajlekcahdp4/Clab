@@ -5,7 +5,7 @@
 
 int main ()
 {
-    PolinomLsmCalc (3);
-    LinearLsmCalc ();
+    ExpLsmCalc ();
+
     return 0;
 }
