@@ -87,13 +87,12 @@ double Get_ad (double *x, double* y, int N)
 {
     double a = Get_a (x, y, N);
     double ad = (1 / sqrt((double)N)) * sqrt( ((SumSq(y, N) / N) - (Sum(y, N) * Sum(y, N)) / (N*N)) / ((SumSq(x, N) / N) - (Sum(x, N) * Sum(x, N)) / (N*N) ) - (a * a));
-    printf ("%lf\n", ad);
     return ad;
 }
 
 double Get_bd (double*x, double* y, int N)
 {
-    double bd = Get_ad (x, y, N) * (1/(double)N) * sqrt(N*SumSq(x, N) - (Sum (x, N) * Sum (x, N)));
+    double bd = Get_ad (x, y, N) * sqrt(SumSq(x, N) / N - (Sum (x, N) * Sum (x, N)) / (N*N));
     return bd;
 }
 
