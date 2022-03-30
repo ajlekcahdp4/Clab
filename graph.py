@@ -33,7 +33,7 @@ def DrawGraphLine (x, y, a, b, ad, bd, name1, name2):
     ax.tick_params(which='major', length=10, width=2)
     ax.tick_params(which='minor', length=5, width=1)
     
-    plt.savefig(str(input("Enter the name for graph picture file\n")))
+    plt.savefig(str(input("Enter the name for linear graph picture file\n")))
 #=============================================================================================
 #=======================================polinomial=graph======================================
 #=============================================================================================
@@ -56,6 +56,7 @@ def DrawGraphPol (x, y, a, name1, name2):
 
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
+    
     ax.set_title(r'График №1', fontsize=12)
 
     ax.grid(which="major", linewidth=1.2)
@@ -73,7 +74,6 @@ def DrawGraphPol (x, y, a, name1, name2):
     
     plt.savefig(str(input("Enter the name for polinomial graph picture file\n")))
 
-    plt.savefig(str(input("Enter the name for graph picture file\n")))
 #=============================================================================================
 #======================================pexponential=graph=====================================
 #=============================================================================================
@@ -90,8 +90,8 @@ def DrawGraphExp (x, y, a, b, ad, bd, name1, name2):
 
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
-    ax.text(2 * min(x) , min(yn), 'y = exp(%.4f * x)' %(a))
-    ax.set_title(r'График №1', fontsize=12)
+    ax.text(min(x) , 0.8*min(yn), 'y = exp(%.4f * x)' %(a))
+    ax.set_title(r'График', fontsize=12)
 
     ax.grid(which="major", linewidth=1.2)
     ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)
@@ -106,4 +106,4 @@ def DrawGraphExp (x, y, a, b, ad, bd, name1, name2):
     ax.tick_params(which='major', length=10, width=2)
     ax.tick_params(which='minor', length=5, width=1)
     
-    plt.savefig(str(input("Enter the name for graph picture file\n")))
+    plt.savefig(str(input("Enter the name for exponential graph picture file\n")))
