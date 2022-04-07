@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "writetex.h"
-#include "../mnk/mnk.h"
+#include "../lsm/lsm.h"
 #undef NDEBUG
 
 FILE* Start (struct mnk *MNK)

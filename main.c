@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "writetex/writetex.h"
-#include "mnk/mnk.h"
+#include "lsm/lsm.h"
 
 int main ()
 {

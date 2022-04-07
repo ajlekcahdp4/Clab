@@ -18,17 +18,17 @@ Graph: datacalc
 Tex:
 	$(CC) main.o writetex.o -o tex.out
 	./tex.out
-datacalc: mnkcalc averagecalc SLE_
+datacalc: lsmcalc averagecalc SLE_
 	chmod +x bash_scripts/mkdir.sh
 	./bash_scripts/mkdir.sh data
-	$(CC) -g Data_Calc.c mnk.o average.o -o datacalc.out SLE.o -lm
+	$(CC) -g Data_Calc.c lsm.o average.o -o datacalc.out SLE.o -lm
 	./datacalc.out
 averagecalc:
 	$(CC) -g -c average/average.c
 main:
 	$(CC) -g -c main.c 
-mnkcalc:
-	$(CC) -g -c mnk/mnk.c
+lsmcalc:
+	$(CC) -g -c lsm/lsm.c
 writetex.o:
 	$(CC) -g -c writetex/writetex.c
 SLE_:
