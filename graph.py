@@ -18,7 +18,6 @@ def DrawGraphLine (x, y, a, b, ad, bd, name1, name2):
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
     ax.text(min(x) , min(y), 'y = %.4f*x + %.4f' %(a, b))
-    ax.set_title(r'График №1', fontsize=12)
 
     ax.grid(which="major", linewidth=1.2)
     ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)
@@ -91,7 +90,6 @@ def DrawGraphExp (x, y, a, b, ad, bd, name1, name2):
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
     ax.text(min(x) , 0.8*min(yn), 'y = exp(%.4f * x)' %(a))
-    ax.set_title(r'График', fontsize=12)
 
     ax.grid(which="major", linewidth=1.2)
     ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)

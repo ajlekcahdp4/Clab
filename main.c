@@ -11,15 +11,15 @@ int main ()
 //===========Here=you=can=combine=your=own=.tex=file:==============
 //=================================================================
     FILE *f = Start (MNK);
-    PrintStart (f);
+    //PrintStart (f);
     TabForGraph(f, MNK);
-    IncludePic (f, "tex/graph1.eps");
+    /*IncludePic (f, "tex/graph1.eps");
     LineDev (f);
     
     IncludePic (f, "tex/graph2.eps");
     IncludePic (f, "tex/graph3.eps");
     IncludePic (f, "tex/graph4.eps");
-
+    */
 
 
     

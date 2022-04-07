@@ -117,11 +117,11 @@ void TabForGraph (FILE * f, struct mnk *MNK)
     fprintf(f, "\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", MNK->N + 1);
 
     for (int i = 0; i < MNK->N; i++)
-        fprintf (f, "&%.1lf", MNK->x[i]);
+        fprintf (f, "&%.4lf", MNK->x[i]);
     fprintf(f, "\\\\\\hline\n");
 
     for (int i = 0; i < MNK->N; i++)
-        fprintf (f, "&%.3lf", MNK->y[i]);
+        fprintf (f, "&%.4lf", MNK->y[i]);
     fprintf(f, "\\\\\\hline\n");
 
     fprintf (f, "\\end{tabular}\n$$\n\n");

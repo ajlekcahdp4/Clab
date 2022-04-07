@@ -288,7 +288,7 @@ void ExpLsmPrint (lsm_exp *EXP)
 
     fprintf (out, "%.4g\n", EXP->a);
     fprintf (out, "%.4g\n", EXP->b);
-    fprintf (out, "%.4g\n", exp (EXP->ad));
+    fprintf (out, "%.4g\n", EXP->ad);
     fprintf (out, "%.4g\n", exp (EXP->bd));
 
     fclose (out);
