@@ -8,4 +8,4 @@ import input
 #G.DrawGraphPol (x, y, a, "x", "y")
 
 x, y, a, b, ad, bd = input.InputLinearLSM ("data/data_lsm.res")
-G.DrawGraphLine (x, y, a, b, ad, bd, "x", "y")
+G.DrawGraphLine (x, y, a, b, "x", "y")

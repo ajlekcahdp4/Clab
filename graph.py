@@ -6,7 +6,7 @@ import numpy as np
 import math
 #GNUplot
 
-def DrawGraphLine (x, y, a, b, ad, bd, name1, name2):
+def DrawGraphLine (x, y, a, b, name1, name2):
     
     max_x = max(x)
     min_x = min(x)
@@ -17,7 +17,7 @@ def DrawGraphLine (x, y, a, b, ad, bd, name1, name2):
 
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
-    ax.text(min(x) , min(y), 'y = %.4f*x + %.4f' %(a, b))
+    ax.text(min(x) , min(y), name2 + ' = {:.4f} * '.format(a) + name1 + '{:.4f}'.format(b))
 
     ax.grid(which="major", linewidth=1.2)
     ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)
@@ -77,7 +77,7 @@ def DrawGraphPol (x, y, a, name1, name2):
 #======================================pexponential=graph=====================================
 #=============================================================================================
 
-def DrawGraphExp (x, y, a, b, ad, bd, name1, name2):
+def DrawGraphExp (x, y, a, b, name1, name2):
     
     max_x = max(x)
     min_x = min(x)
@@ -89,7 +89,7 @@ def DrawGraphExp (x, y, a, b, ad, bd, name1, name2):
 
     ax.set_xlabel(name1, fontsize=14)
     ax.set_ylabel(name2, fontsize=14)
-    ax.text(min(x) , 0.8*min(yn), 'y = exp(%.4f * x)' %(a))
+    ax.text(min(x) , 0.8*min(yn), name2 + ' = exp({:.4f} *'.format(a) + name1 +')')
 
     ax.grid(which="major", linewidth=1.2)
     ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)
