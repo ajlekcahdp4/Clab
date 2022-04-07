@@ -12,7 +12,7 @@ int main ()
 //=================================================================
     FILE *f = Start (MNK);
     //PrintStart (f);
-    TabForGraph(f, MNK);
+    MakeTabular(f, "1.dat");
     /*IncludePic (f, "tex/graph1.eps");
     LineDev (f);
     

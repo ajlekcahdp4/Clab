@@ -106,25 +106,46 @@ void LineDev (FILE* f)
     free (x);
     free(y);
 }
-void TabForGraph (FILE * f, struct mnk *MNK)
+void MakeTabular (FILE * texfile, char *filename)
 {
-    fprintf (f, "$$\n");
-    fprintf (f, "\\begin{tabular}{|c|");
-    for (int i = 0; i < MNK->N; i++)
-        fprintf(f, "c|");
-    fprintf (f, "}\n\\hline\n");
+    int N = 0;
+    int res = 0;
+    FILE *inputfile = fopen(filename, "r");
+    
+    fscanf (inputfile, "%d", &N);
+    double *x = calloc (N, sizeof(double));
+    double *y = calloc (N, sizeof(double));
 
-    fprintf(f, "\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", MNK->N + 1);
+    for (int i = 0; i < N; i++)
+    {
+        res = fscanf (inputfile, "%lf", x + i);
+        assert (res);
+    }
+    for (int i = 0; i < N; i++)
+    {
+        res = fscanf (inputfile, "%lf", y + i);
+        assert (res);
+    }
 
-    for (int i = 0; i < MNK->N; i++)
-        fprintf (f, "&%.4lf", MNK->x[i]);
-    fprintf(f, "\\\\\\hline\n");
 
-    for (int i = 0; i < MNK->N; i++)
-        fprintf (f, "&%.4lf", MNK->y[i]);
-    fprintf(f, "\\\\\\hline\n");
+    //-----------------------------------------
+    fprintf (texfile, "$$\n");
+    fprintf (texfile, "\\begin{tabular}{|c|");
+    for (int i = 0; i < N; i++)
+        fprintf(texfile, "c|");
+    fprintf (texfile, "}\n\\hline\n");
 
-    fprintf (f, "\\end{tabular}\n$$\n\n");
+    fprintf(texfile, "\\hline\n\\multicolumn{%d}{|c|}{}\\\\\n\\hline\n", N + 1);
+
+    for (int i = 0; i < N; i++)
+        fprintf (texfile, "&%.4lf", x[i]);
+    fprintf(texfile, "\\\\\\hline\n");
+
+    for (int i = 0; i < N; i++)
+        fprintf (texfile, "&%.4lf", y[i]);
+    fprintf(texfile, "\\\\\\hline\n");
+
+    fprintf (texfile, "\\end{tabular}\n$$\n\n");
 }
 
 void Tabular (FILE *f)

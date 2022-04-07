@@ -12,6 +12,7 @@ FILE* Start (struct mnk *MNK);
 
 void PrintStart (FILE* f);
 void Tabular (FILE *f);
+void MakeTabular (FILE * texfile, char *filename);
 void IncludePic (FILE* f, char* pic);
 void LineDev (FILE* f);
 void TabForGraph (FILE * f, struct mnk *MNK);
